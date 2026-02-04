@@ -26,6 +26,8 @@ return {
       cmp.setup({
         window = {
           completion = {
+            max_height = 10,
+            max_width = 10,
             border = "rounded",
             scrollbar = true,
           },
@@ -46,15 +48,28 @@ return {
             return vim_item
           end,
         },
+        
         mapping = cmp.mapping.preset.insert({
           ["<Tab>"] = cmp.mapping.confirm({ select = true }),
           ["<CR>"] = cmp.mapping(function(fallback)
             if cmp.visible() then cmp.confirm({ select = true }) else fallback() end
           end),
         }),
+
         sources = {
-          { name = "nvim_lsp" },
-          { name = "buffer", keyword_length = 3 },
+          {
+            name = "nvim_lsp",
+            entry_filter = function(entry)
+              return entry:get_kind() ~= cmp.lsp.CompletionItemKind.Text
+            end,
+          },
+          {
+            name = "buffer",
+            keyword_length = 3,
+            entry_filter = function(entry)
+              return entry:get_kind() ~= cmp.lsp.CompletionItemKind.Text
+            end,
+          },
         },
       })
     end,
