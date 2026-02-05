@@ -15,6 +15,27 @@ map("v", "<C-a>", "<Esc>ggVG", opts)
 
 map("i", "<C-a>", "<Esc>ggVG", opts)
 
+-- disable paste shift
+vim.keymap.set("n", "p", "p`]", { noremap = true })
+
+-- indent
+local function keep_cursor(cmd)
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  vim.cmd("normal! " .. cmd)
+  vim.api.nvim_win_set_cursor(0, { row, col })
+end
+
+vim.keymap.set("n", "<Tab>", function()
+  keep_cursor(">>")
+end, { desc = "Indent line" })
+
+vim.keymap.set("n", "<S-Tab>", function()
+  keep_cursor("<<")
+end, { desc = "Unindent line" })
+
+vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent selection" })
+vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Unindent selection" })
+
 -- Window/Buffer navigation
 map("i", "<C-H>", "<C-W>", opts)
 map("n", "<C-S>", ":w<CR>", opts)
