@@ -29,6 +29,18 @@ map("i", "<C-Z>", "<Esc>u", opts)
 -- Diagnostics
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
+-- CompetiTest
+map('n', '<leader>ta', ':CompetiTest add_testcase<CR>', { desc = 'Add Test Case', unpack(opts) })
+map('n', '<leader>te', ':CompetiTest edit_testcase<CR>', { desc = 'Edit Test Case (Select in UI)', unpack(opts) })
+map('n', '<leader>td', ':CompetiTest delete_testcase<CR>', { desc = 'Delete Test Case (Select in UI)', unpack(opts) })
+map('n', '<leader>tr', ':CompetiTest run<CR>', { desc = 'Run Tests', unpack(opts) })
+map('n', '<leader>tu', ':CompetiTest show_ui<CR>', { desc = 'Open UI', unpack(opts) })
+
+-- 2. Specific Number Management (Manual Entry)
+-- These leave the command line open so you can type the number (e.g., "3") and hit Enter
+map('n', '<leader>tE', ':CompetiTest edit_testcase ', { desc = 'Edit specific test #', noremap = true, silent = false })
+map('n', '<leader>tD', ':CompetiTest delete_testcase ', { desc = 'Delete specific test #', noremap = true, silent = false })
+
 -- ===== RUN C++ (F1) =====
 vim.keymap.set("n", "<F1>", function()
   vim.cmd("w")
