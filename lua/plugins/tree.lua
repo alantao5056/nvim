@@ -6,7 +6,10 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("nvim-tree").setup({
+    local tree = require("nvim-tree")
+    local api = require("nvim-tree.api")
+
+    tree.setup({
       sort = {
         sorter = "case_sensitive",
       },
@@ -20,5 +23,7 @@ return {
         dotfiles = true,
       },
     })
+
+    vim.keymap.set("n", "<leader>e", api.tree.focus, { desc = "Focus file tree" })
   end,
 }

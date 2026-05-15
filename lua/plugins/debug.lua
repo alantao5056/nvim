@@ -270,9 +270,9 @@ return {
       end
     end, { noremap = true, silent = true })
 
-    vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { noremap = true, silent = true })
+    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { noremap = true, silent = true, desc = "Toggle breakpoint"})
 
-    vim.keymap.set("n", "<leader>B", function()
+    vim.keymap.set("n", "<leader>dB", function()
       vim.ui.input({ prompt = "Breakpoint condition: " }, function(condition)
         if condition then dap.set_breakpoint(condition) end
       end)
@@ -286,6 +286,6 @@ return {
       end)
     end, { desc = "Add global watch" })
 
-    vim.keymap.set("n", "<leader>du", dapui.toggle, { noremap = true, silent = true })
+    vim.keymap.set("n", "<leader>du", dapui.toggle, { noremap = true, silent = true, desc = "Toggle debugging ui"})
   end,
 }
