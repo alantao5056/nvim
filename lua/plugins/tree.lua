@@ -22,6 +22,21 @@ return {
       filters = {
         dotfiles = true,
       },
+      renderer = {
+        icons = {
+          glyphs = {
+            git = {
+              unstaged = "M",
+              staged = "S",
+              unmerged = "U",
+              renamed = "R",
+              untracked = "?",
+              deleted = "D",
+              ignored = "I",
+            },
+          },
+        },
+      },
     })
 
     vim.keymap.set("n", "<leader>e", api.tree.focus, { desc = "Focus file tree" })

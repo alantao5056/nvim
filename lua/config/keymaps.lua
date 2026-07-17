@@ -65,7 +65,8 @@ map('n', '<leader>tD', ':CompetiTest delete_testcase ', { desc = 'Delete specifi
 -- ===== RUN C++ (F1) =====
 vim.keymap.set("n", "<F1>", function()
   vim.cmd("w")
-  local cmd = 'split | terminal g++ -g -std=c++17 % -o main.exe && main.exe'
+  local cmd = 'split | terminal g++ -std=c++17 -Wall -Wextra -Wpedantic -g -D_GLIBCXX_DEBUG % -o %:r.exe && %:r.exe'
+  -- local cmd = 'split | terminal g++ -std=c++17 -Wall -Wextra -Wpedantic -g -D_GLIBCXX_DEBUG % -o %:r.exe && gdb -ex "run" -ex "bt" --batch %:r.exe'
   vim.cmd(cmd)
   vim.cmd("startinsert")
 end)
