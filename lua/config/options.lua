@@ -1,6 +1,8 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.fillchars = { eob = " " }
+vim.opt.cmdheight = 0
+vim.opt.laststatus = 3
 
 -- indentation
 vim.opt.tabstop = 2
